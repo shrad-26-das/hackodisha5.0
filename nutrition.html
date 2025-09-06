@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌱 Nourish & Glow - Your Wellness Hub</title>
+    <meta name="description" content="A warm, gentle wellness companion for mindful eating and nutrition. Track your progress, discover meal ideas, and nourish your way to glowing health.">
+    <link rel="stylesheet" href="nutrition.css">
+</head>
+<body>
+    <div class="nutrition-hub">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="main-title">🌱 Nourish & Glow</h1>
+            <p class="subtitle">Your gentle companion for mindful eating and wellness</p>
+        </div>
+
+        <!-- Daily Tip Card -->
+        <div class="daily-tip-card">
+            <div class="tip-content">
+                <div class="tip-icon">
+                    <svg class="sparkles-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/>
+                    </svg>
+                </div>
+                <div class="tip-text">
+                    <h3 class="tip-title">Daily Glow Tip ✨</h3>
+                    <p class="tip-description" id="current-tip">Add colorful veggies to every meal for natural vitamins 🌈</p>
+                    <button class="next-tip-btn" onclick="nextTip()">
+                        Next Tip 
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14m-7-7 7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meal Ideas Grid -->
+        <div class="meal-ideas-section">
+            <h2 class="section-title">Meal Ideas to Make You Glow 🌟</h2>
+            <div class="meal-grid">
+                <div class="meal-card gradient-primary">
+                    <div class="meal-content">
+                        <div class="meal-icon">🥤</div>
+                        <h3 class="meal-title">Rainbow Smoothie Bowl</h3>
+                        <p class="meal-description">Blend frozen berries, spinach, and banana. Top with granola and fresh fruit!</p>
+                    </div>
+                </div>
+                <div class="meal-card gradient-secondary">
+                    <div class="meal-content">
+                        <div class="meal-icon">🥑</div>
+                        <h3 class="meal-title">Avocado Toast Delight</h3>
+                        <p class="meal-description">Mashed avocado on sourdough with cherry tomatoes and everything seasoning.</p>
+                    </div>
+                </div>
+                <div class="meal-card gradient-accent">
+                    <div class="meal-content">
+                        <div class="meal-icon">🥗</div>
+                        <h3 class="meal-title">Colorful Buddha Bowl</h3>
+                        <p class="meal-description">Quinoa, roasted veggies, chickpeas, and tahini dressing for the perfect bite.</p>
+                    </div>
+                </div>
+                <div class="meal-card gradient-peach">
+                    <div class="meal-content">
+                        <div class="meal-icon">🥛</div>
+                        <h3 class="meal-title">Overnight Oat Magic</h3>
+                        <p class="meal-description">Oats soaked in almond milk with chia seeds, berries, and a drizzle of honey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe Spotlight -->
+        <div class="recipe-spotlight">
+            <div class="recipe-content">
+                <div class="recipe-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2Z"/>
+                        <line x1="6" x2="18" y1="9" y2="9"/>
+                    </svg>
+                </div>
+                <div class="recipe-text">
+                    <h3 class="recipe-main-title">Today's Recipe Spotlight</h3>
+                    <h4 class="recipe-title">Glow-Boosting Green Smoothie</h4>
+                    <p class="recipe-description">A creamy, delicious smoothie packed with nutrients for radiant skin</p>
+                    
+                    <div class="recipe-details">
+                        <div class="ingredients-section">
+                            <h5 class="ingredients-title">Ingredients:</h5>
+                            <ul class="ingredients-list">
+                                <li><span class="bullet"></span>1 cup spinach (trust us, you won't taste it!)</li>
+                                <li><span class="bullet"></span>1/2 frozen banana</li>
+                                <li><span class="bullet"></span>1/2 avocado</li>
+                                <li><span class="bullet"></span>1 cup coconut milk</li>
+                                <li><span class="bullet"></span>1 tbsp almond butter</li>
+                                <li><span class="bullet"></span>1 tsp honey</li>
+                                <li><span class="bullet"></span>Ice cubes</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="steps-section">
+                            <h5 class="steps-title">Quick Steps:</h5>
+                            <ol class="steps-list">
+                                <li><span class="step-number">1</span>Add spinach and coconut milk to blender first</li>
+                                <li><span class="step-number">2</span>Add remaining ingredients</li>
+                                <li><span class="step-number">3</span>Blend until smooth and creamy</li>
+                                <li><span class="step-number">4</span>Pour into your favorite glass and enjoy! ✨</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="progress-tracker">
+            <div class="progress-content">
+                <div class="progress-info">
+                    <h3 class="progress-title">Fruit Servings Today 🍎</h3>
+                    <p class="progress-description">Goal: 5 servings • You're doing amazing!</p>
+                    <div class="fruits-display">
+                        <span class="fruit-emoji active">🍎</span>
+                        <span class="fruit-emoji active">🍌</span>
+                        <span class="fruit-emoji inactive">🍇</span>
+                        <span class="fruit-emoji inactive">🍓</span>
+                        <span class="fruit-emoji inactive">🥝</span>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progress-count">2</span>/5 servings complete
+                    </div>
+                </div>
+                
+                <div class="progress-actions">
+                    <div class="heart-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <button class="add-serving-btn" id="add-serving-btn" onclick="addFruit()">
+                        Add Serving +
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="nutrition.js"></script>
+</body>
+</html>
