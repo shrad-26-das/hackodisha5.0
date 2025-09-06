@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -363,3 +364,273 @@
     </script>
   </body>
 </html>
+=======
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTracker - Your Personal Workout Companion</title>
+    <link rel="stylesheet" href="workout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+
+        <div class="container">
+            <h1 class="logo">
+                <span class="logo-icon">💪</span>
+                Workout Tracker
+            </h1>
+            
+            <nav class="nav">
+                <span class="date-display" id="currentDate"></span>
+            </nav>
+        </div>
+                    <p>Your personal fitness companion to track steps , calories and goals</p>
+    </header>
+
+
+    <!-- Main Dashboard -->
+    <main class="main">
+        <div class="container">
+            <!-- Quick Stats Row -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-icon steps-icon"></div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="quickSteps">0</span>
+                        <span class="stat-label">Steps Today</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon calories-icon"></div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="quickCalories">0</span>
+                        <span class="stat-label">Calories Burned</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon time-icon"></div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="quickWorkoutTime">0</span>
+                        <span class="stat-label">Workout Minutes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="dashboard-grid">
+                <!-- Step Counter Section -->
+                <section class="card step-counter">
+                    <div class="card-header">
+                        <div class="card-icon steps-icon"></div>
+                        <h2>Step Counter</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="step-display">
+                            <span class="step-count" id="stepCount">0</span>
+                            <span class="step-goal">/ <span id="stepGoal">10000</span></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="stepProgress"></div>
+                        </div>
+                        <div class="step-controls">
+                            <button class="btn btn-secondary" onclick="stepTracker.addSteps(100)">+100</button>
+                            <button class="btn btn-secondary" onclick="stepTracker.addSteps(500)">+500</button>
+                            <button class="btn btn-secondary" onclick="stepTracker.addSteps(1000)">+1000</button>
+                            <button class="btn btn-tertiary" onclick="stepTracker.resetSteps()">Reset</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Calorie Counter Section -->
+                <section class="card calorie-counter">
+                    <div class="card-header">
+                        <div class="card-icon calories-icon"></div>
+                        <h2>Calorie Tracker</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="calorie-display">
+                            <div class="calorie-item">
+                                <span class="calorie-label">Burned</span>
+                                <span class="calorie-value" id="caloriesBurned">0</span>
+                            </div>
+                            <div class="calorie-item">
+                                <span class="calorie-label">Consumed</span>
+                                <span class="calorie-value" id="caloriesConsumed">0</span>
+                            </div>
+                            <div class="calorie-item net">
+                                <span class="calorie-label">Net</span>
+                                <span class="calorie-value" id="caloriesNet">0</span>
+                            </div>
+                        </div>
+                        <div class="calorie-input-section">
+                            <div class="input-group">
+                                <input type="number" id="burnCaloriesInput" placeholder="Calories burned" class="input-field">
+                                <button class="btn btn-primary" onclick="calorieTracker.addBurnedCalories()">Add Burned</button>
+                            </div>
+                            <div class="input-group">
+                                <input type="number" id="consumeCaloriesInput" placeholder="Calories consumed" class="input-field">
+                                <button class="btn btn-secondary" onclick="calorieTracker.addConsumedCalories()">Add Consumed</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Goal Setter Section -->
+                <section class="card goal-setter">
+                    <div class="card-header">
+                        <div class="card-icon goal-icon"></div>
+                        <h2>Goal Setter</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="goal-tabs">
+                            <button class="goal-tab active" onclick="goalSetter.switchTab('daily')">Daily</button>
+                            <button class="goal-tab" onclick="goalSetter.switchTab('weekly')">Weekly</button>
+                            <button class="goal-tab" onclick="goalSetter.switchTab('monthly')">Monthly</button>
+                        </div>
+                        <div class="goal-content" id="goalContent">
+                            <div class="goal-item">
+                                <label>Steps Goal</label>
+                                <div class="input-with-btn">
+                                    <input type="number" id="dailyStepsGoal" value="10000" class="input-field">
+                                    <button class="btn btn-primary" onclick="goalSetter.updateStepsGoal()">Update</button>
+                                </div>
+                            </div>
+                            <div class="goal-item">
+                                <label>Workout Minutes Goal</label>
+                                <div class="input-with-btn">
+                                    <input type="number" id="dailyWorkoutGoal" value="30" class="input-field">
+                                    <button class="btn btn-primary" onclick="goalSetter.updateWorkoutGoal()">Update</button>
+                                </div>
+                            </div>
+                            <div class="goal-item">
+                                <label>Calorie Burn Goal</label>
+                                <div class="input-with-btn">
+                                    <input type="number" id="dailyCalorieGoal" value="500" class="input-field">
+                                    <button class="btn btn-primary" onclick="goalSetter.updateCalorieGoal()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Progress Overview Section -->
+                <section class="card progress-overview">
+                    <div class="card-header">
+                        <div class="card-icon chart-icon"></div>
+                        <h2>Progress Overview</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="progress-stats">
+                            <div class="progress-item">
+                                <div class="progress-circle">
+                                    <svg class="progress-svg" width="60" height="60">
+                                        <circle cx="30" cy="30" r="25" stroke="#FFB6D6" stroke-width="4" fill="none" stroke-dasharray="157" stroke-dashoffset="157" id="stepsProgressCircle"></circle>
+                                    </svg>
+                                    <span class="progress-percentage" id="stepsPercentage">0%</span>
+                                </div>
+                                <span class="progress-label">Steps Goal</span>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-circle">
+                                    <svg class="progress-svg" width="60" height="60">
+                                        <circle cx="30" cy="30" r="25" stroke="#D4A7FF" stroke-width="4" fill="none" stroke-dasharray="157" stroke-dashoffset="157" id="workoutProgressCircle"></circle>
+                                    </svg>
+                                    <span class="progress-percentage" id="workoutPercentage">0%</span>
+                                </div>
+                                <span class="progress-label">Workout Goal</span>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-circle">
+                                    <svg class="progress-svg" width="60" height="60">
+                                        <circle cx="30" cy="30" r="25" stroke="#A7D4FF" stroke-width="4" fill="none" stroke-dasharray="157" stroke-dashoffset="157" id="calorieProgressCircle"></circle>
+                                    </svg>
+                                    <span class="progress-percentage" id="caloriePercentage">0%</span>
+                                </div>
+                                <span class="progress-label">Calorie Goal</span>
+                            </div>
+                        </div>
+                        <div class="weekly-summary">
+                            <h3>This Week's Summary</h3>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span class="summary-value" id="weeklySteps">0</span>
+                                    <span class="summary-label">Total Steps</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-value" id="weeklyWorkouts">0</span>
+                                    <span class="summary-label">Workout Minutes</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-value" id="weeklyCalories">0</span>
+                                    <span class="summary-label">Calories Burned</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-value" id="weeklyGoalsHit">0</span>
+                                    <span class="summary-label">Goals Achieved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Workout Timer Section -->
+                <section class="card workout-timer">
+                    <div class="card-header">
+                        <div class="card-icon timer-icon"></div>
+                        <h2>Workout Timer</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="timer-display">
+                            <span class="timer-time" id="timerDisplay">00:00:00</span>
+                            <span class="timer-status" id="timerStatus">Ready to start</span>
+                        </div>
+                        <div class="timer-controls">
+                            <button class="btn btn-primary" id="startPauseBtn" onclick="workoutTimer.toggleTimer()">Start</button>
+                            <button class="btn btn-secondary" onclick="workoutTimer.resetTimer()">Reset</button>
+                            <button class="btn btn-tertiary" onclick="workoutTimer.lapTimer()">Lap</button>
+                        </div>
+                        <div class="workout-selector">
+                            <select id="workoutType" class="input-field">
+                                <option value="general">General Workout</option>
+                                <option value="cardio">Cardio</option>
+                                <option value="strength">Strength Training</option>
+                                <option value="yoga">Yoga/Stretching</option>
+                                <option value="hiit">HIIT</option>
+                            </select>
+                        </div>
+                        <div class="lap-times" id="lapTimes"></div>
+                    </div>
+                </section>
+
+                <!-- Recent Activity Section -->
+                <section class="card recent-activity">
+                    <div class="card-header">
+                        <div class="card-icon activity-icon"></div>
+                        <h2>Recent Activity</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="activity-list" id="activityList">
+                            <div class="activity-item">
+                                <div class="activity-time">Just started</div>
+                                <div class="activity-description">Welcome to FitTracker! Set your first goal to get started.</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-tertiary full-width" onclick="activityTracker.clearActivity()">Clear History</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FitTracker. Stay healthy, stay motivated! 💪</p>
+        </div>
+    </footer>
+
+    <script src="workout.js"></script>
+</body>
+</html
