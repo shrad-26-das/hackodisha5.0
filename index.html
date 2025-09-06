@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkinGlow - Your Personal Skincare Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+              
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#quiz" class="nav-link">Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tracker" class="nav-link">Tracker</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#suggestions" class="nav-link">Suggestions</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <section id="home" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Discover Your Perfect
+                    <span class="highlight">Skincare Journey</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Track your routines, understand your skin, and get personalized recommendations 
+                    for a healthier, glowing complexion.
+                </p>
+                <button class="cta-button" onclick="navigateToSection('quiz')">
+                    <span>Start Your Journey</span>
+                    <div class="button-glow"></div>
+                </button>
+            </div>
+            <div class="hero-visual">
+                <div class="skincare-illustration">
+                    <div class="product-bottle bottle-1"></div>
+                    <div class="product-bottle bottle-2"></div>
+                    <div class="product-bottle bottle-3"></div>
+                    <div class="floating-particles">
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skin Assessment Quiz</h2>
+                <p>Let's discover your unique skin profile</p>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="quiz-progress"></div>
+                    </div>
+                    <span class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">8</span></span>
+                </div>
+
+                <div class="quiz-content" id="quiz-content">
+                    <!-- Quiz questions will be populated by JavaScript -->
+                </div>
+
+                <div class="quiz-navigation">
+                    <button class="quiz-btn secondary" id="prev-btn" onclick="previousQuestion()" disabled>Previous</button>
+                    <button class="quiz-btn primary" id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+                </div>
+
+                <div class="quiz-results" id="quiz-results" style="display: none;">
+                    <div class="results-card">
+                        <h3>Your Skin Profile</h3>
+                        <div class="skin-type-result">
+                            <div class="result-icon">🌸</div>
+                            <div class="result-details">
+                                <h4 id="skin-type-result"></h4>
+                                <p id="skin-type-description"></p>
+                            </div>
+                        </div>
+                        <div class="undertone-result">
+                            <div class="result-icon">🎨</div>
+                            <div class="result-details">
+                                <h4 id="undertone-result"></h4>
+                                <p id="undertone-description"></p>
+                            </div>
+                        </div>
+                        <button class="quiz-btn primary" onclick="navigateToSection('tracker')">
+                            Continue to Tracker
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracker Dashboard -->
+    <section id="tracker" class="tracker-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your Skincare Dashboard</h2>
+                <p>Track your daily routines and monitor your progress</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Quick Stats -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <h3 id="streak-count">0</h3>
+                            <p>Day Streak</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✨</div>
+                        <div class="stat-content">
+                            <h3 id="routines-completed">0</h3>
+                            <p>Routines Completed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3 id="progress-percentage">0%</h3>
+                            <p>Weekly Progress</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Routine Logger -->
+                <div class="routine-logger">
+                    <h3>Log Today's Routine</h3>
+                    <div class="routine-tabs">
+                        <button class="routine-tab active" onclick="switchRoutineTab('morning')">Morning</button>
+                        <button class="routine-tab" onclick="switchRoutineTab('evening')">Evening</button>
+                    </div>
+                    
+                    <div class="routine-content" id="morning-routine">
+                        <div class="routine-steps">
+                            <div class="step-item">
+                                <input type="checkbox" id="am-cleanser" class="step-checkbox">
+                                <label for="am-cleanser">Cleanser</label>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" id="am-toner" class="step-checkbox">
+                                <label for="am-toner">Toner</label>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" id="am-serum" class="step-checkbox">
+                                <label for="am-serum">Serum</label>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" id="am-moisturizer" class="step-checkbox">
+                                <label for="am-moisturizer">Moisturizer</label>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" id="am-sunscreen" class="step-checkbox">
+                                <label for="am-sunscreen">Sunscreen</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="routine-content" id="evening-routine" style="display: none;">
+                        <div class="routine-steps">
+                            <div class="step-item">
+                                <input type="checkbox" id="pm-cleanser" class="step-checkbox">
+                                <label for="pm-cleanser">Cleanser</label>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" id="pm-toner" class="step-checkbox">
+                                <label for="pm-toner">Toner</label>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" id="pm-treatment" class="step-checkbox">
+                                <label for="pm-treatment">Treatment</label>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" id="pm-moisturizer" class="step-checkbox">
+                                <label for="pm-moisturizer">Moisturizer</label>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" id="pm-face-oil" class="step-checkbox">
+                                <label for="pm-face-oil">Face Oil</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="save-routine-btn" onclick="saveRoutine()">Save Routine</button>
+                </div>
+
+                <!-- Progress Chart -->
+                <div class="progress-chart-container">
+                    <h3>Weekly Progress</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="progress-chart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Entries -->
+                <div class="recent-entries">
+                    <h3>Recent Entries</h3>
+                    <div class="entries-list" id="entries-list">
+                        <!-- Entries will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suggestions Page -->
+    <section id="suggestions" class="suggestions-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Personalized Recommendations</h2>
+                <p>Discover products and routines tailored just for you</p>
+            </div>
+
+            <div class="suggestions-container">
+                <div class="suggestions-categories">
+                    <button class="category-btn active" onclick="showSuggestionCategory('products')">Product Recommendations</button>
+                    <button class="category-btn" onclick="showSuggestionCategory('routines')">Routine Suggestions</button>
+                    <button class="category-btn" onclick="showSuggestionCategory('tips')">Expert Tips</button>
+                </div>
+
+                <div class="suggestions-content">
+                    <div class="suggestion-category" id="products-suggestions">
+                        <div class="suggestions-grid" id="products-grid">
+                            <!-- Product suggestions will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="suggestion-category" id="routines-suggestions" style="display: none;">
+                        <div class="routine-suggestions" id="routine-suggestions-list">
+                            <!-- Routine suggestions will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="suggestion-category" id="tips-suggestions" style="display: none;">
+                        <div class="tips-grid" id="tips-grid">
+                            <!-- Tips will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <span class="toast-message" id="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
