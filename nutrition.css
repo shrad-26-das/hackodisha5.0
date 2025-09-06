@@ -1,0 +1,464 @@
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: hsl(28, 100%, 98%);
+    color: hsl(340, 15%, 25%);
+    line-height: 1.6;
+}
+
+/* Main container */
+.nutrition-hub {
+    min-height: 100vh;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.main-title {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, hsl(340, 65%, 85%), hsl(25, 85%, 88%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: hsl(260, 15%, 45%);
+    font-weight: 500;
+}
+
+/* Daily Tip Card */
+.daily-tip-card {
+    background: linear-gradient(135deg, hsl(340, 65%, 85%), hsl(25, 85%, 88%));
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 30px -4px hsl(340, 65%, 85%, 0.2);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.daily-tip-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 40px hsl(340, 65%, 85%, 0.3);
+}
+
+.tip-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.tip-icon {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sparkles-icon {
+    color: hsl(340, 45%, 25%);
+    animation: bounce 2s infinite;
+}
+
+.tip-text {
+    flex: 1;
+}
+
+.tip-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: hsl(340, 45%, 25%);
+    margin-bottom: 0.75rem;
+}
+
+.tip-description {
+    font-size: 1.125rem;
+    color: hsl(340, 45%, 25%);
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.next-tip-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1.5rem;
+    color: hsl(340, 45%, 25%);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.next-tip-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Meal Ideas Section */
+.meal-ideas-section {
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: hsl(340, 15%, 25%);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.meal-card {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 30px -4px hsl(340, 65%, 85%, 0.2);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.meal-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 40px hsl(340, 65%, 85%, 0.3);
+}
+
+.gradient-primary {
+    background: linear-gradient(135deg, hsl(340, 65%, 85%), hsl(25, 85%, 88%));
+}
+
+.gradient-secondary {
+    background: linear-gradient(135deg, hsl(160, 55%, 88%), hsl(200, 70%, 90%));
+}
+
+.gradient-accent {
+    background: linear-gradient(135deg, hsl(260, 45%, 92%), hsl(340, 65%, 85%));
+}
+
+.gradient-peach {
+    background: hsl(25, 85%, 88%);
+}
+
+.meal-content {
+    text-align: center;
+}
+
+.meal-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.meal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.meal-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Recipe Spotlight */
+.recipe-spotlight {
+    background: linear-gradient(135deg, hsl(160, 55%, 88%), hsl(200, 70%, 90%));
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 30px -4px hsl(340, 65%, 85%, 0.2);
+}
+
+.recipe-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.recipe-icon {
+    width: 4rem;
+    height: 4rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.recipe-icon svg {
+    color: hsl(160, 35%, 25%);
+}
+
+.recipe-text {
+    flex: 1;
+}
+
+.recipe-main-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: hsl(160, 35%, 25%);
+    margin-bottom: 0.5rem;
+}
+
+.recipe-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: hsl(160, 35%, 25%);
+    margin-bottom: 1rem;
+}
+
+.recipe-description {
+    color: hsl(160, 35%, 25%);
+    opacity: 0.8;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+}
+
+.recipe-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .recipe-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .recipe-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+.ingredients-title,
+.steps-title {
+    font-weight: 700;
+    color: hsl(160, 35%, 25%);
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+}
+
+.ingredients-list,
+.steps-list {
+    list-style: none;
+}
+
+.ingredients-list li,
+.steps-list li {
+    color: hsl(160, 35%, 25%);
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.bullet {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: hsl(160, 35%, 25%);
+    opacity: 0.4;
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+.step-number {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: hsl(160, 35%, 25%);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+/* Progress Tracker */
+.progress-tracker {
+    background: linear-gradient(135deg, hsl(260, 45%, 92%), hsl(340, 65%, 85%));
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 30px -4px hsl(340, 65%, 85%, 0.2);
+}
+
+.progress-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .progress-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.progress-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: hsl(260, 35%, 25%);
+    margin-bottom: 0.5rem;
+}
+
+.progress-description {
+    color: hsl(260, 35%, 25%);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.fruits-display {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+    .fruits-display {
+        justify-content: center;
+    }
+}
+
+.fruit-emoji {
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.fruit-emoji.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.fruit-emoji.inactive {
+    transform: scale(0.75);
+    opacity: 0.4;
+}
+
+.progress-text {
+    color: hsl(260, 35%, 25%);
+    font-weight: 600;
+}
+
+.progress-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.heart-icon {
+    width: 4rem;
+    height: 4rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart-icon svg {
+    color: hsl(260, 35%, 25%);
+    animation: bounce 2s infinite;
+}
+
+.add-serving-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1.5rem;
+    color: hsl(260, 35%, 25%);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.add-serving-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.add-serving-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nutrition-hub {
+        padding: 1rem;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .tip-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .meal-grid {
+        grid-template-columns: 1fr;
+    }
+}
