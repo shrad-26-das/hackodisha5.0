@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydro Buddy - Stay Hydrated! 💧</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">💧 Hydro Buddy</h1>
+            <p class="subtitle">Let's reach your 3L daily goal together!</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Today's Progress Section -->
+            <section class="progress-section">
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h2>Today's Progress</h2>
+                        <span class="date" id="current-date"></span>
+                    </div>
+                    
+                    <div class="water-bottle-container">
+                        <div class="water-bottle">
+                            <div class="water-fill" id="water-fill"></div>
+                            <div class="bottle-labels">
+                                <span class="label label-3000">3000ml</span>
+                                <span class="label label-2250">2250ml</span>
+                                <span class="label label-1500">1500ml</span>
+                                <span class="label label-750">750ml</span>
+                            </div>
+                        </div>
+                        <div class="progress-stats">
+                            <div class="current-intake">
+                                <span class="amount" id="current-amount">0</span>
+                                <span class="unit">ml</span>
+                            </div>
+                            <div class="goal">of 3000ml</div>
+                            <div class="percentage" id="percentage">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Add Section -->
+            <section class="quick-add-section">
+                <div class="quick-add-card">
+                    <h3>Log Your Water Intake</h3>
+                    <div class="quick-add-buttons">
+                        <button class="quick-btn" data-amount="250">
+                            <div class="btn-icon">🥤</div>
+                            <div class="btn-text">250ml</div>
+                            <div class="btn-desc">Glass</div>
+                        </button>
+                        <button class="quick-btn" data-amount="500">
+                            <div class="btn-icon">🍶</div>
+                            <div class="btn-text">500ml</div>
+                            <div class="btn-desc">Bottle</div>
+                        </button>
+                        <button class="quick-btn" data-amount="750">
+                            <div class="btn-icon">🧴</div>
+                            <div class="btn-text">750ml</div>
+                            <div class="btn-desc">Large</div>
+                        </button>
+                        <button class="quick-btn custom-btn" id="custom-btn">
+                            <div class="btn-icon">⚡</div>
+                            <div class="btn-text">Custom</div>
+                            <div class="btn-desc">Amount</div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fun Facts Section -->
+            <section class="facts-section">
+                <div class="facts-card">
+                    <h3>💡 Hydration Tip</h3>
+                    <p class="fact-text" id="fact-text">Loading amazing water facts...</p>
+                    <button class="new-fact-btn" id="new-fact-btn">New Tip</button>
+                </div>
+            </section>
+
+            <!-- Monthly Progress Section -->
+            <section class="monthly-section">
+                <div class="monthly-card">
+                    <div class="monthly-header">
+                        <h3>Monthly Progress</h3>
+                        <div class="month-nav">
+                            <button class="nav-btn" id="prev-month">←</button>
+                            <span class="current-month" id="current-month"></span>
+                            <button class="nav-btn" id="next-month">→</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid"></div>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color no-data"></div>
+                            <span>No data</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color low"></div>
+                            <span>&lt; 1L</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color medium"></div>
+                            <span>1L - 2L</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color high"></div>
+                            <span>2L - 3L</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color goal"></div>
+                            <span>3L+</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reset Button -->
+            <section class="actions-section">
+                <button class="reset-btn" id="reset-btn">Reset Today's Progress</button>
+            </section>
+        </main>
+    </div>
+
+    <!-- Custom Amount Modal -->
+    <div class="modal" id="custom-modal">
+        <div class="modal-content">
+            <h3>Add Custom Amount</h3>
+            <input type="number" id="custom-input" placeholder="Enter amount in ml" min="1" max="2000">
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="cancel-btn">Cancel</button>
+                <button class="add-btn" id="add-custom-btn">Add Water</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievement Modal -->
+    <div class="modal" id="achievement-modal">
+        <div class="modal-content achievement-content">
+            <div class="achievement-icon">🎉</div>
+            <h3>Congratulations!</h3>
+            <p>You've reached your daily hydration goal!</p>
+            <button class="celebrate-btn" id="celebrate-btn">Amazing! 🌟</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
