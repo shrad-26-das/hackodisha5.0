@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Glow Journey</title>
+    <meta name="description" content="Your personal glow up journey tracker - celebrate progress with a pastel-themed before/after journal" />
+    <meta name="author" content="Glow Hub" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="My Glow Journey" />
+    <meta property="og:description" content="Your personal glow up journey tracker" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="journal.css">
+</head>
+<body>
+    <!-- Hero Background -->
+    <div class="hero-background">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">My Glow Journey</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Upload Section -->
+        <div class="upload-grid">
+            <!-- Before Card -->
+            <div class="card">
+                <div class="upload-section">
+                    <h3 class="upload-title">
+                        <svg class="icon camera-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+                            <circle cx="12" cy="13" r="3"></circle>
+                        </svg>
+                        Before
+                    </h3>
+                    <div class="upload-area before-upload" id="beforeUploadArea">
+                        <div class="upload-placeholder" id="beforePlaceholder">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7,10 12,15 17,10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <p>Upload your before photo</p>
+                        </div>
+                        <img id="beforeImage" class="uploaded-image" style="display: none;" alt="Before photo">
+                    </div>
+                    <input type="file" accept="image/*" id="beforeInput" class="file-input">
+                    <label for="beforeInput" class="upload-button before-button">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7,10 12,15 17,10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Choose Before Photo
+                    </label>
+                </div>
+            </div>
+
+            <!-- After Card -->
+            <div class="card">
+                <div class="upload-section">
+                    <h3 class="upload-title">
+                        <svg class="icon sparkles-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4"></path>
+                            <path d="M21 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"></path>
+                            <path d="M3 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"></path>
+                            <path d="M12 21c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"></path>
+                            <path d="M12 3c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"></path>
+                        </svg>
+                        After
+                    </h3>
+                    <div class="upload-area after-upload" id="afterUploadArea">
+                        <div class="upload-placeholder" id="afterPlaceholder">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7,10 12,15 17,10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <p>Upload your after photo</p>
+                        </div>
+                        <img id="afterImage" class="uploaded-image" style="display: none;" alt="After photo">
+                    </div>
+                    <input type="file" accept="image/*" id="afterInput" class="file-input">
+                    <label for="afterInput" class="upload-button after-button">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7,10 12,15 17,10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Choose After Photo
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Slider -->
+        <div class="card comparison-card" id="comparisonCard" style="display: none;">
+            <h3 class="section-title">Compare Your Progress ✨</h3>
+            <div class="comparison-container">
+                <div class="comparison-images" id="comparisonImages">
+                    <div class="before-section" id="beforeSection">
+                        <img id="beforeCompare" alt="Before comparison">
+                    </div>
+                    <div class="after-section" id="afterSection">
+                        <img id="afterCompare" alt="After comparison">
+                    </div>
+                    <div class="slider-line" id="sliderLine"></div>
+                </div>
+                <input type="range" min="0" max="100" value="50" id="comparisonSlider" class="comparison-slider">
+            </div>
+        </div>
+
+        <!-- Milestone Highlights -->
+        <div class="card">
+            <h3 class="section-title">🏆 Your Milestones</h3>
+            <div class="milestones">
+                <button class="milestone active pink">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                    </svg>
+                    1 Week
+                </button>
+                <button class="milestone active mint">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                    </svg>
+                    1 Month
+                </button>
+                <button class="milestone lavender">90 Days</button>
+                <button class="milestone blue">Halfway There!</button>
+                <button class="milestone peach">6 Months</button>
+            </div>
+        </div>
+
+        <!-- Journal Notes -->
+        <div class="card">
+            <h3 class="section-title">
+                <svg class="icon heart-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                Your Reflection Space
+            </h3>
+            <div class="journal-container">
+                <textarea 
+                    id="journalNote" 
+                    class="journal-textarea"
+                    placeholder="Write about your journey, feelings, goals, or any thoughts you'd like to remember... ✨"
+                    rows="6"
+                ></textarea>
+            </div>
+        </div>
+
+        <!-- Progress Timeline -->
+        <div class="card">
+            <h3 class="section-title">📅 Your Journey Timeline</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-circle active">1</div>
+                    <p class="timeline-label">Week 1</p>
+                </div>
+                <div class="timeline-connector active"></div>
+                <div class="timeline-item">
+                    <div class="timeline-circle active">2</div>
+                    <p class="timeline-label">Week 2</p>
+                </div>
+                <div class="timeline-connector"></div>
+                <div class="timeline-item">
+                    <div class="timeline-circle">3</div>
+                    <p class="timeline-label">Week 3</p>
+                </div>
+                <div class="timeline-connector"></div>
+                <div class="timeline-item">
+                    <div class="timeline-circle">4</div>
+                    <p class="timeline-label">Week 4</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Affirmations -->
+        <div class="card affirmations-card">
+            <div class="affirmations">
+                <p class="affirmation">You're glowing at your own pace 💕</p>
+                <p class="affirmation">Every small step counts ✨</p>
+                <p class="affirmation">Progress, not perfection 🌸</p>
+                <p class="affirmation">Your journey is beautiful 🦋</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="journal.js"></script>
+</body>
+</html>
