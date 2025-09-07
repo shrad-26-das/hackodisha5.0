@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glow-Up Journey</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800;900&family=Nunito:wght@200;300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      :root {
+        --baby-pink: #ffc1cc;
+        --lavender: #c8a2c8;
+        --mint: #a8e6cf;
+        --soft-peach: #ffccb6;
+        --cream: #fef7f7;
+        --text-primary: #4a5568;
+        --text-secondary: #718096;
+        --white-transparent: rgba(255, 255, 255, 0.9);
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        font-weight: 400;
+        background: linear-gradient(
+          -45deg,
+          #ffc1cc,
+          #c8a2c8,
+          #a8e6cf,
+          #ffccb6,
+          #fef7f7
+        );
+        background-size: 400% 400%;
+        animation: gradientFlow 15s ease-in-out infinite;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      @keyframes gradientFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating Background Pattern */
+      .floating-pattern {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.4;
+      }
+
+      .floating-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: floatGentle 20s linear infinite;
+      }
+
+      .floating-circle:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .floating-circle:nth-child(2) {
+        width: 120px;
+        height: 120px;
+        top: 70%;
+        right: 15%;
+        animation-delay: -5s;
+      }
+
+      .floating-circle:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        bottom: 30%;
+        left: 25%;
+        animation-delay: -10s;
+      }
+
+      .floating-circle:nth-child(4) {
+        width: 100px;
+        height: 100px;
+        top: 40%;
+        right: 30%;
+        animation-delay: -15s;
+      }
+
+      .floating-circle:nth-child(5) {
+        width: 90px;
+        height: 90px;
+        bottom: 15%;
+        right: 20%;
+        animation-delay: -8s;
+      }
+
+      .floating-circle:nth-child(6) {
+        width: 70px;
+        height: 70px;
+        top: 60%;
+        left: 5%;
+        animation-delay: -12s;
+      }
+
+      @keyframes floatGentle {
+        0% {
+          transform: translateY(0px) translateX(0px);
+          opacity: 0.4;
+        }
+        25% {
+          transform: translateY(-20px) translateX(10px);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translateY(0px) translateX(20px);
+          opacity: 0.4;
+        }
+        75% {
+          transform: translateY(20px) translateX(10px);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(0px) translateX(0px);
+          opacity: 0.4;
+        }
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        padding: 1rem 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 2rem;
+        font-weight: 500;
+        background: #ff0e92;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 5px 15px rgba(255, 193, 204, 0.3));
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-primary);
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-size: 0.95rem;
+        position: relative;
+        padding: 0.6rem 1.2rem;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, var(--baby-pink), var(--mint));
+        border-radius: 25px;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: -1;
+      }
+
+      .nav-links a:hover::before {
+        opacity: 0.15;
+        transform: scale(1);
+      }
+
+      .nav-links a:hover {
+        color: var(--text-primary);
+        box-shadow: 0 8px 25px rgba(255, 193, 204, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        padding: 0 2rem;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: heroFadeIn 1.2s ease-out 0.3s forwards;
+      }
+
+      @keyframes heroFadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 4rem;
+        font-weight: 500;
+        color: rgb(143, 74, 131);
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        text-shadow: 0 2px 20px rgba(255, 193, 204, 0.2);
+      }
+
+      .hero-subtitle {
+        font-family: "Nunito", sans-serif;
+        font-size: 1.3rem;
+        color: var(--text-secondary);
+        margin-bottom: 3rem;
+        font-weight: 400;
+        line-height: 1.6;
+      }
+
+      .hero-button {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(135deg, var(--baby-pink), var(--lavender));
+        color: var(--text-primary);
+        text-decoration: none;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-size: 1rem;
+        border-radius: 50px;
+        box-shadow: 0 8px 25px rgba(255, 193, 204, 0.25);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .hero-button:hover::before {
+        left: 100%;
+      }
+
+      .hero-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(255, 193, 204, 0.35);
+      }
+
+      /* Main Sections */
+
+      .main-sections {
+        padding: 80px 2rem 100px;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-title {
+        text-align: center;
+        font-family: "Poppins", sans-serif; /* changed from Quicksand */
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 3rem;
+        letter-spacing: -0.5px;
+      }
+
+      .cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+
+      .card {
+        background: var(--white-transparent);
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      .card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 25px;
+        padding: 2px;
+        background: linear-gradient(
+          135deg,
+          transparent,
+          rgba(255, 255, 255, 0.5),
+          transparent
+        );
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .card:hover::before {
+        opacity: 1;
+      }
+
+      .card:hover {
+        transform: translateY(-15px) scale(1.03);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+      }
+
+      /* Card Specific Styles */
+      .fitness-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 193, 204, 0.2),
+          var(--white-transparent)
+        );
+      }
+
+      .fitness-card:hover {
+        box-shadow: 0 25px 50px rgba(255, 193, 204, 0.25),
+          0 0 50px rgba(255, 193, 204, 0.15);
+      }
+
+      .mood-card {
+        background: linear-gradient(
+          135deg,
+          rgba(200, 162, 200, 0.2),
+          var(--white-transparent)
+        );
+      }
+
+      .mood-card:hover {
+        box-shadow: 0 25px 50px rgba(200, 162, 200, 0.25),
+          0 0 50px rgba(200, 162, 200, 0.15);
+      }
+
+      .looks-card {
+        background: linear-gradient(
+          135deg,
+          rgba(168, 230, 207, 0.2),
+          var(--white-transparent)
+        );
+      }
+
+      .looks-card:hover {
+        box-shadow: 0 25px 50px rgba(168, 230, 207, 0.25),
+          0 0 50px rgba(168, 230, 207, 0.15);
+      }
+
+      /* Pastel Icons */
+      .card-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .fitness-icon {
+        background: linear-gradient(135deg, var(--baby-pink), #ffb3ba);
+        box-shadow: 0 8px 20px rgba(255, 193, 204, 0.3);
+      }
+
+      .mood-icon {
+        background: linear-gradient(135deg, var(--lavender), #dbb3db);
+        box-shadow: 0 8px 20px rgba(200, 162, 200, 0.3);
+      }
+
+      .looks-icon {
+        background: linear-gradient(135deg, var(--mint), #90d4ae);
+        box-shadow: 0 8px 20px rgba(168, 230, 207, 0.3);
+      }
+
+      .card:hover .card-icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .card-title {
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        letter-spacing: -0.3px;
+      }
+
+      .card-description {
+        font-family: "Nunito", sans-serif;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      /* Footer */
+      .footer {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(15px);
+        padding: 3rem 2rem 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--baby-pink), var(--mint));
+        border-radius: 3px;
+        animation: dividerGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes dividerGlow {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: translateX(-50%) scaleX(1);
+        }
+        50% {
+          opacity: 1;
+          transform: translateX(-50%) scaleX(1.2);
+        }
+      }
+
+      .footer p {
+        font-family: "Nunito", sans-serif;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-top: 2rem;
+        font-weight: 400;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 3rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .nav-links {
+          gap: 1.5rem;
+        }
+
+        .nav-links a {
+          font-size: 0.9rem;
+          padding: 0.5rem 1rem;
+        }
+
+        .cards-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .card {
+          padding: 2rem 1.5rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .card-icon {
+          width: 70px;
+          height: 70px;
+          font-size: 2.2rem;
+        }
+
+        .floating-circle {
+          opacity: 0.2;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1rem;
+        }
+
+        .logo {
+          font-size: 1.7rem;
+        }
+
+        .nav-container {
+          padding: 0 1rem;
+        }
+
+        .nav-links {
+          gap: 1rem;
+        }
+
+        .nav-links a {
+          font-size: 0.85rem;
+          padding: 0.4rem 0.8rem;
+        }
+
+        .card-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 2rem;
+        }
+
+        .card-title {
+          font-size: 1.4rem;
+        }
+
+        .card-description {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* Animation delays for cards */
+      .card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .card:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating Background Pattern -->
+    <div class="floating-pattern">
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">Glow-Up Hub</a>
+        <ul class="nav-links">
+          <li><a href="#fitness">Fitness</a></li>
+          <li><a href="#mood">Mood</a></li>
+          <li><a href="#looks">Looks</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Step Into Your Glow Up Journey</h1>
+        <p class="hero-subtitle">Become the best version of you.</p>
+        <a href="#sections" class="hero-button">Explore Now</a>
+      </div>
+    </section>
+
+    <!-- Main Sections -->
+    <section class="main-sections" id="sections">
+      <h2 class="section-title">Choose Your Path</h2>
+      <div class="cards-container">
+        <div class="card fitness-card" data-section="fitness">
+          <div class="card-icon fitness-icon">💪</div>
+          <h3 class="card-title">Fitness Glow-Up</h3>
+          <p class="card-description">
+            Transform your body with personalized workouts, nutrition plans, and
+            wellness tips designed to help you feel strong and confident.
+          </p>
+        </div>
+
+        <div class="card mood-card" data-section="mood">
+          <div class="card-icon mood-icon">🧘‍♀️</div>
+          <h3 class="card-title">Mood Glow-Up</h3>
+          <p class="card-description">
+            Elevate your mental wellness with mindfulness practices, positivity
+            exercises, and emotional balance techniques for inner peace.
+          </p>
+        </div>
+
+        <div class="card looks-card" data-section="looks">
+          <div class="card-icon looks-icon">⭐</div>
+          <h3 class="card-title">Looks Glow-Up</h3>
+          <p class="card-description">
+            Discover beauty tips, skincare routines, and style advice to enhance
+            your natural radiance and express your unique aesthetic.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 Glow-Up Journey. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Scroll animations for cards
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all cards
+      document.querySelectorAll(".card").forEach((card) => {
+        observer.observe(card);
+      });
+
+      // Enhanced navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.style.background = "rgba(255, 255, 255, 0.95)";
+          navbar.style.boxShadow = "0 5px 20px rgba(0, 0, 0, 0.08)";
+        } else {
+          navbar.style.background = "rgba(255, 255, 255, 0.85)";
+          navbar.style.boxShadow = "none";
+        }
+      });
+
+      // Card click interactions
+      document.querySelectorAll(".card").forEach((card) => {
+        card.addEventListener("click", function () {
+          // Add a gentle pulse effect
+          this.style.animation = "cardPulse 0.6s ease";
+          setTimeout(() => {
+            this.style.animation = "";
+          }, 600);
+
+          const section = this.getAttribute("data-section");
+          console.log(`Navigating to ${section} section`);
+        });
+      });
+
+      // Add dynamic animation styles
+      const animationStyles = document.createElement("style");
+      animationStyles.textContent = `
+            @keyframes cardPulse {
+                0%, 100% { transform: translateY(-15px) scale(1.03); }
+                50% { transform: translateY(-15px) scale(1.06); }
+            }
+        `;
+      document.head.appendChild(animationStyles);
+
+      // Gentle parallax effect for floating circles
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const circles = document.querySelectorAll(".floating-circle");
+
+        circles.forEach((circle, index) => {
+          const speed = 0.5 + index * 0.1;
+          circle.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Add staggered animation for cards
+      const cards = document.querySelectorAll(".card");
+      cards.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.2}s`;
+      });
+    </script>
+  </body>
+</html>
