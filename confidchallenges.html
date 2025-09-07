@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confidence Challenges</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        background: linear-gradient(
+          135deg,
+          #ffeef8 0%,
+          #f0f8ff 50%,
+          #fff5ee 100%
+        );
+        min-height: 100vh;
+      }
+
+      .confidence-section {
+        width: 100%;
+        padding: 60px 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 3rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #ff9a9e, #fecfef);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 4px rgba(255, 182, 193, 0.3);
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: #8b5a83;
+        margin-bottom: 30px;
+        font-weight: 300;
+      }
+
+      .progress-container {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+        margin-bottom: 40px;
+      }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .progress-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #8b5a83;
+      }
+      .progress-stats {
+        font-size: 0.9rem;
+        color: #a67c9a;
+      }
+
+      .progress-bar {
+        height: 12px;
+        background: rgba(255, 182, 193, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ff9a9e, #fecfef);
+        border-radius: 10px;
+        width: 0%;
+        transition: width 0.8s ease;
+      }
+
+      .stickers-container {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .sticker {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f0f0f0;
+        transition: all 0.3s ease;
+        opacity: 0.3;
+      }
+
+      .sticker svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .sticker.earned {
+        opacity: 1;
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+      }
+
+      .challenges-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .challenge-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(255, 182, 193, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .challenge-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(255, 182, 193, 0.25);
+      }
+      .challenge-card.completed {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 154, 158, 0.1),
+          rgba(254, 207, 239, 0.1)
+        );
+        border-color: #ff9a9e;
+      }
+
+      .challenge-icon svg {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 15px;
+      }
+
+      .challenge-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #8b5a83;
+        margin-bottom: 10px;
+      }
+      .challenge-description {
+        color: #a67c9a;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .challenge-status {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+      .status-pending {
+        background: rgba(255, 234, 167, 0.3);
+        color: #d4943a;
+      }
+      .status-completed {
+        background: rgba(255, 154, 158, 0.3);
+        color: #e17055;
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+      }
+      .modal-content {
+        background: white;
+        margin: 5% auto;
+        padding: 40px;
+        border-radius: 25px;
+        width: 90%;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+        position: relative;
+      }
+      .close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 28px;
+        cursor: pointer;
+      }
+      .close:hover {
+        color: #ff9a9e;
+      }
+
+      .modal-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .modal-icon svg {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 15px;
+      }
+      .modal-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #8b5a83;
+      }
+
+      .challenge-steps {
+        margin: 30px 0;
+      }
+      .step {
+        background: rgba(255, 154, 158, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        border-left: 4px solid #ff9a9e;
+      }
+      .step-number {
+        font-weight: bold;
+        color: #ff9a9e;
+        margin-bottom: 5px;
+      }
+
+      .complete-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #ff9a9e, #fecfef);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .complete-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 154, 158, 0.4);
+      }
+      .complete-btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="confidence-section">
+      <div class="container">
+        <div class="section-header">
+          <h1 class="section-title">Confidence Challenges</h1>
+          <p class="section-subtitle">
+            Complete daily challenges to build your confidence and earn
+            stickers!
+          </p>
+
+          <div class="progress-container">
+            <div class="progress-header">
+              <span class="progress-title">Your Progress</span>
+              <span class="progress-stats"
+                ><span id="completed-count">0</span> of
+                <span id="total-count">6</span> challenges completed</span
+              >
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="stickers-container" id="stickers-container">
+              <!-- Microphone for affirmations -->
+              <div class="sticker" data-sticker="0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="#ff9a9e"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
+                  />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" y1="19" x2="12" y2="23" />
+                  <line x1="8" y1="23" x2="16" y2="23" />
+                </svg>
+              </div>
+              <!-- Trophy for power pose -->
+              <div class="sticker" data-sticker="1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="#a1c4fd"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path d="M8 21h8M12 17v4M7 10h10l-1 7H8z" />
+                  <circle cx="12" cy="5" r="3" />
+                </svg>
+              </div>
+              <!-- Star for compliments -->
+              <div class="sticker" data-sticker="2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="#f6a9d8"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <polygon
+                    points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8 12 2"
+                  />
+                </svg>
+              </div>
+              <!-- Arrow pointing up for growth -->
+              <div class="sticker" data-sticker="3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="#ffd6a5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path d="M7 17l10-10" />
+                  <path d="M7 7h10v10" />
+                </svg>
+              </div>
+              <!-- Medal for achievements -->
+              <div class="sticker" data-sticker="4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="#84fab0"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="8" r="7" />
+                  <path
+                    d="M8.21 13.89l-1.42 4.95 2.83.48 2.38-2.38 2.38 2.38 2.83-.48-1.42-4.95"
+                  />
+                  <circle cx="12" cy="8" r="3" />
+                </svg>
+              </div>
+              <!-- Footprints for confidence walk -->
+              <div class="sticker" data-sticker="5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="#cdb4db"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 4.5 10 6v2"
+                  />
+                  <path
+                    d="M20 16v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 2 14 4.5 14 6v2"
+                  />
+                  <path d="M6 18a4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenges-grid" id="challenges-grid"></div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="challenge-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+          <span class="modal-icon" id="modal-icon"></span>
+          <h2 class="modal-title" id="modal-title"></h2>
+          <p class="modal-subtitle" id="modal-subtitle"></p>
+        </div>
+        <div class="challenge-steps" id="modal-steps"></div>
+        <button class="complete-btn" id="complete-btn">
+          Complete Challenge
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const challenges = [
+        {
+          id: "affirmations",
+          title: "Daily Affirmations",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff9a9e" viewBox="0 0 24 24" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>`,
+          description:
+            "Start your day with positive self-talk and empowering affirmations.",
+          subtitle: "Boost your self-worth with powerful words",
+          steps: [
+            {
+              number: 1,
+              text: "Find a quiet space where you won't be disturbed",
+            },
+            { number: 2, text: "Take three deep breaths to center yourself" },
+            {
+              number: 3,
+              text: "Look in the mirror and say 3 positive affirmations about yourself",
+            },
+            {
+              number: 4,
+              text: "Repeat each affirmation with conviction and belief",
+            },
+            {
+              number: 5,
+              text: "End with a smile and carry this energy into your day",
+            },
+          ],
+        },
+        {
+          id: "power-pose",
+          title: "Power Pose Challenge",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#a1c4fd" viewBox="0 0 24 24" stroke-width="2">
+            <path d="M8 21h8M12 17v4M7 10h10l-1 7H8z"/>
+            <circle cx="12" cy="5" r="3"/>
+          </svg>`,
+          description:
+            "Strike confident poses to instantly boost your body language.",
+          subtitle: "Transform your posture, transform your confidence",
+          steps: [
+            {
+              number: 1,
+              text: "Stand tall with your feet shoulder-width apart",
+            },
+            {
+              number: 2,
+              text: "Hold the Superman pose (hands on hips, chest out) for 2 minutes",
+            },
+            {
+              number: 3,
+              text: "Try the Victory V pose (arms raised in a V shape) for 1 minute",
+            },
+            {
+              number: 4,
+              text: "Finish with the Wonder Woman pose (hands on hips, cape flowing)",
+            },
+            {
+              number: 5,
+              text: "Notice how your energy and confidence has shifted",
+            },
+          ],
+        },
+        {
+          id: "compliment-quest",
+          title: "Compliment Quest",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f6a9d8" viewBox="0 0 24 24" stroke-width="2">
+            <polygon points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8 12 2"/>
+          </svg>`,
+          description:
+            "Give genuine compliments to others and boost both your confidence and theirs.",
+          subtitle: "Spread positivity and build connections",
+          steps: [
+            {
+              number: 1,
+              text: "Identify three people in your life (family, friends, colleagues)",
+            },
+            {
+              number: 2,
+              text: "Think of something genuine you appreciate about each person",
+            },
+            {
+              number: 3,
+              text: "Deliver each compliment in person, over text, or by phone",
+            },
+            { number: 4, text: "Be specific about what you're complimenting" },
+            {
+              number: 5,
+              text: "Notice how giving compliments makes you feel more confident",
+            },
+          ],
+        },
+        {
+          id: "comfort-zone",
+          title: "Comfort Zone Stretch",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ffd6a5" viewBox="0 0 24 24" stroke-width="2">
+            <path d="M7 17l10-10"/>
+            <path d="M7 7h10v10"/>
+          </svg>`,
+          description: "Take a small step outside your comfort zone.",
+          subtitle: "Growth happens outside your comfort zone",
+          steps: [
+            {
+              number: 1,
+              text: "Choose one small thing that makes you slightly nervous",
+            },
+            {
+              number: 2,
+              text: "Examples: Start a conversation, try a new activity, speak up in a meeting",
+            },
+            { number: 3, text: "Prepare yourself mentally for 5 minutes" },
+            {
+              number: 4,
+              text: "Take action and do the thing that scares you a little",
+            },
+            {
+              number: 5,
+              text: "Celebrate your courage and reflect on how it felt",
+            },
+          ],
+        },
+        {
+          id: "achievement-review",
+          title: "Achievement Review",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#84fab0" viewBox="0 0 24 24" stroke-width="2">
+            <circle cx="12" cy="8" r="7"/>
+            <path d="M8.21 13.89l-1.42 4.95 2.83.48 2.38-2.38 2.38 2.38 2.83-.48-1.42-4.95"/>
+            <circle cx="12" cy="8" r="3"/>
+          </svg>`,
+          description:
+            "Reflect on your past successes to remind yourself of your capabilities.",
+          subtitle: "Remember your strength and accomplishments",
+          steps: [
+            {
+              number: 1,
+              text: "Get a pen and paper or open a note-taking app",
+            },
+            {
+              number: 2,
+              text: "Write down 5 things you've accomplished in the past year",
+            },
+            {
+              number: 3,
+              text: "Include both big and small wins (job promotion, learned a skill, helped someone)",
+            },
+            {
+              number: 4,
+              text: "Write down the strengths that helped you achieve each success",
+            },
+            {
+              number: 5,
+              text: "Keep this list handy for when you need a confidence boost",
+            },
+          ],
+        },
+        {
+          id: "confidence-walk",
+          title: "Confidence Walk",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#cdb4db" viewBox="0 0 24 24" stroke-width="2">
+            <circle cx="12" cy="4" r="2"/>
+            <path d="m9 20 3-6 3 6"/>
+            <path d="m6 12 3 6 3-6"/>
+            <path d="M12 10V6"/>
+            <path d="M8 8h8"/>
+          </svg>`,
+          description:
+            "Take a mindful walk focusing on confident body language.",
+          subtitle: "Walk tall and own your space",
+          steps: [
+            { number: 1, text: "Go outside for a 10-15 minute walk" },
+            {
+              number: 2,
+              text: "Keep your head up, shoulders back, and maintain good posture",
+            },
+            {
+              number: 3,
+              text: "Make friendly eye contact with people you pass",
+            },
+            {
+              number: 4,
+              text: "Walk with purpose and intention, not rushed but confident",
+            },
+            {
+              number: 5,
+              text: "Practice your confident walk while thinking positive thoughts about yourself",
+            },
+          ],
+        },
+      ];
+
+      let completedChallenges = new Set();
+      let earnedStickers = new Set();
+
+      const challengesGrid = document.getElementById("challenges-grid");
+      const modal = document.getElementById("challenge-modal");
+      const closeModal = document.querySelector(".close");
+      const completeBtn = document.getElementById("complete-btn");
+      const progressFill = document.getElementById("progress-fill");
+      const completedCount = document.getElementById("completed-count");
+      const totalCount = document.getElementById("total-count");
+
+      function init() {
+        renderChallenges();
+        updateProgress();
+        totalCount.textContent = challenges.length;
+      }
+
+      function renderChallenges() {
+        challengesGrid.innerHTML = "";
+        challenges.forEach((challenge) => {
+          const isCompleted = completedChallenges.has(challenge.id);
+          const card = document.createElement("div");
+          card.className = `challenge-card ${isCompleted ? "completed" : ""}`;
+          card.innerHTML = `
+                <span class="challenge-icon">${challenge.icon}</span>
+                <h3 class="challenge-title">${challenge.title}</h3>
+                <p class="challenge-description">${challenge.description}</p>
+                <span class="challenge-status ${
+                  isCompleted ? "status-completed" : "status-pending"
+                }">
+                  ${isCompleted ? "✓ Completed" : "Not started"}
+                </span>`;
+          card.addEventListener("click", () => openModal(challenge));
+          challengesGrid.appendChild(card);
+        });
+      }
+
+      function openModal(challenge) {
+        document.getElementById("modal-icon").innerHTML = challenge.icon;
+        document.getElementById("modal-title").textContent = challenge.title;
+        document.getElementById("modal-subtitle").textContent =
+          challenge.subtitle;
+        document.getElementById("modal-steps").innerHTML =
+          "<h3>Challenge Steps:</h3>" +
+          challenge.steps
+            .map(
+              (step) =>
+                `<div class="step"><div class="step-number">Step ${step.number}</div><div>${step.text}</div></div>`
+            )
+            .join("");
+        completeBtn.dataset.challengeId = challenge.id;
+        completeBtn.disabled = completedChallenges.has(challenge.id);
+        completeBtn.textContent = completedChallenges.has(challenge.id)
+          ? "Already Completed"
+          : "Complete Challenge";
+        modal.style.display = "block";
+      }
+
+      function completeChallenge(id) {
+        completedChallenges.add(id);
+        const index = challenges.findIndex((c) => c.id === id);
+        if (index !== -1) {
+          earnedStickers.add(index);
+          document
+            .querySelector(`[data-sticker="${index}"]`)
+            .classList.add("earned");
+        }
+        updateProgress();
+        renderChallenges();
+        modal.style.display = "none";
+      }
+
+      function updateProgress() {
+        const completed = completedChallenges.size,
+          total = challenges.length;
+        progressFill.style.width = `${(completed / total) * 100}%`;
+        completedCount.textContent = completed;
+        earnedStickers.forEach((i) => {
+          document
+            .querySelector(`[data-sticker="${i}"]`)
+            .classList.add("earned");
+        });
+      }
+
+      // Event listeners
+      completeBtn.addEventListener("click", () => {
+        if (!completedChallenges.has(completeBtn.dataset.challengeId)) {
+          completeChallenge(completeBtn.dataset.challengeId);
+        }
+      });
+
+      closeModal.addEventListener(
+        "click",
+        () => (modal.style.display = "none")
+      );
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+      });
+
+      // Initialize
+      init();
+    </script>
+  </body>
+</html>
