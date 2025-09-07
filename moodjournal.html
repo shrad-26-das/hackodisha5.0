@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mood Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mjstyles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🌸 My Mood Journal</h1>
+            <div class="header-controls">
+                <button id="darkModeToggle" class="dark-mode-toggle" title="Toggle dark mode">🌙</button>
+                <button id="exportBtn" class="export-btn" title="Export entries">📄</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="journal">📝 Journal</button>
+                <button class="nav-tab" data-tab="dashboard">📊 Dashboard</button>
+                <button class="nav-tab" data-tab="affirmations">💖 Affirmations</button>
+                <button class="nav-tab" data-tab="selfcare">🌱 Self-Care</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="container">
+            <!-- Journal Entry Section -->
+            <section id="journal" class="tab-content active">
+                <!-- Daily Affirmation at top -->
+                <div class="daily-affirmation-banner">
+                    <div class="affirmation-content">
+                        <h3>✨ Today's Affirmation</h3>
+                        <p id="dailyAffirmationText" class="affirmation-text"></p>
+                        <button id="newAffirmationBtn" class="new-affirmation-btn">🔄 New Affirmation</button>
+                    </div>
+                </div>
+
+                <div class="entry-card">
+                    <h2>Daily Entry</h2>
+                    <form id="moodForm" class="mood-form">
+                        <div class="form-group">
+                            <label for="entryDate">Date</label>
+                            <input type="date" id="entryDate" name="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>How are you feeling today?</label>
+                            <div class="mood-selector">
+                                <div class="mood-emoji" data-mood="1" title="Very Sad">😢</div>
+                                <div class="mood-emoji" data-mood="2" title="Sad">😞</div>
+                                <div class="mood-emoji" data-mood="3" title="Neutral">😐</div>
+                                <div class="mood-emoji" data-mood="4" title="Happy">😊</div>
+                                <div class="mood-emoji" data-mood="5" title="Very Happy">😄</div>
+                            </div>
+                            <input type="hidden" id="moodRating" name="mood" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Emotions (select all that apply)</label>
+                            <div class="emotion-tags">
+                                <label class="emotion-tag">
+                                    <input type="checkbox" name="emotions" value="happy">
+                                    <span>😊 Happy</span>
+                                </label>
+                                <label class="emotion-tag">
+                                    <input type="checkbox" name="emotions" value="anxious">
+                                    <span>😰 Anxious</span>
+                                </label>
+                                <label class="emotion-tag">
+                                    <input type="checkbox" name="emotions" value="calm">
+                                    <span>😌 Calm</span>
+                                </label>
+                                <label class="emotion-tag">
+                                    <input type="checkbox" name="emotions" value="tired">
+                                    <span>😴 Tired</span>
+                                </label>
+                                <label class="emotion-tag">
+                                    <input type="checkbox" name="emotions" value="excited">
+                                    <span>🤩 Excited</span>
+                                </label>
+                                <label class="emotion-tag">
+                                    <input type="checkbox" name="emotions" value="grateful">
+                                    <span>🙏 Grateful</span>
+                                </label>
+                                <label class="emotion-tag">
+                                    <input type="checkbox" name="emotions" value="frustrated">
+                                    <span>😤 Frustrated</span>
+                                </label>
+                                <label class="emotion-tag">
+                                    <input type="checkbox" name="emotions" value="content">
+                                    <span>😌 Content</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="form-group">
+                                <label for="energyLevel">Energy Level</label>
+                                <input type="range" id="energyLevel" name="energy" min="1" max="10" value="5">
+                                <div class="slider-labels">
+                                    <span>Low</span>
+                                    <span id="energyValue">5</span>
+                                    <span>High</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="stressLevel">Stress Level</label>
+                                <input type="range" id="stressLevel" name="stress" min="1" max="10" value="5">
+                                <div class="slider-labels">
+                                    <span>Low</span>
+                                    <span id="stressValue">5</span>
+                                    <span>High</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reflection">Reflection & Notes</label>
+                            <textarea id="reflection" name="reflection" placeholder="How was your day? What happened? How did you feel about it?" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gratitude">Highlight of the day / What are you grateful for?</label>
+                            <textarea id="gratitude" name="gratitude" placeholder="What made you smile today? What are you thankful for?" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="save-btn">💾 Save Entry</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Affirmations Section -->
+            <section id="affirmations" class="tab-content">
+                <div class="affirmations-header">
+                    <h2>💖 Your Affirmation Wall</h2>
+                    <p>Create and collect beautiful affirmations to inspire your journey</p>
+                </div>
+
+                <div class="add-affirmation-card">
+                    <h3>✨ Add Personal Affirmation</h3>
+                    <div class="affirmation-form">
+                        <textarea id="personalAffirmationInput" placeholder="Write your personal affirmation here..." rows="3"></textarea>
+                        <button id="addPersonalAffirmation" class="add-affirmation-btn">💫 Add to Wall</button>
+                    </div>
+                </div>
+
+                <div class="affirmation-wall">
+                    <div id="affirmationCards" class="affirmation-cards-grid"></div>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Mood Calendar</h3>
+                        <div id="moodCalendar" class="mood-calendar"></div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Weekly Mood Trends</h3>
+                        <canvas id="moodChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Common Emotions</h3>
+                        <div id="emotionsList" class="emotions-list"></div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Recent Entries</h3>
+                        <div id="recentEntries" class="recent-entries"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Self-Care Section -->
+            <section id="selfcare" class="tab-content">
+                <div class="selfcare-grid">
+                    <div class="selfcare-card">
+                        <h3>Daily Quote</h3>
+                        <div id="dailyQuote" class="daily-quote">
+                            <p class="quote-text"></p>
+                            <p class="quote-author"></p>
+                        </div>
+                        <button id="newQuoteBtn" class="quote-btn">✨ New Quote</button>
+                    </div>
+                    
+                    <div class="selfcare-card">
+                        <h3>Affirmations & Intentions</h3>
+                        <textarea id="affirmations" placeholder="Write your affirmations or intentions for tomorrow..." rows="6"></textarea>
+                        <button id="saveAffirmations" class="save-affirmations-btn">💖 Save</button>
+                    </div>
+                    
+                    <div class="selfcare-card">
+                        <h3>Self-Care Reminders</h3>
+                        <div class="selfcare-reminders">
+                            <div class="reminder">🧘‍♀️ Take 5 deep breaths</div>
+                            <div class="reminder">💧 Drink a glass of water</div>
+                            <div class="reminder">🌿 Step outside for fresh air</div>
+                            <div class="reminder">📱 Take a break from screens</div>
+                            <div class="reminder">💕 Practice self-compassion</div>
+                            <div class="reminder">🛁 Take a relaxing bath</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made with 💖 for your wellbeing journey</p>
+        </div>
+    </footer>
+
+    <script src="mjscript.js"></script>
+
+    <!-- Affirmation Popup Modal -->
+    <div id="affirmationModal" class="affirmation-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🌟 Beautiful! Entry Saved</h3>
+            </div>
+            <div class="modal-body">
+                <p class="modal-affirmation-text"></p>
+            </div>
+            <button id="closeModal" class="close-modal-btn">💖 Thank you</button>
+        </div>
+    </div>
+</body>
+</html>
