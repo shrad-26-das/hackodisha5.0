@@ -14,11 +14,11 @@ body {
 :root {
     /* Base colors */
     --background: hsl(350, 100%, 97%);
-    --foreground: hsl(340, 15%, 25%);
+    --foreground: hsl(338, 47%, 25%);
     --card: hsl(0, 0%, 100%);
     --primary: hsl(320, 45%, 65%);
     --secondary: hsl(300, 35%, 85%);
-    --muted-foreground: hsl(340, 10%, 55%);
+    --muted-foreground: hsl(342, 89%, 27%);
     
     /* Pastel colors */
     --pastel-pink: hsl(330, 80%, 85%);
@@ -63,15 +63,22 @@ body {
     text-align: center;
     padding: 3rem 1.5rem 4rem;
     animation: fadeIn 1s ease-out;
+    color: var(--foreground);
 }
 
 .main-title {
-    font-size: clamp(3rem, 8vw, 5rem);
+    /* font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 700;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+     */
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700;
+    color: var(--foreground); /* use your foreground color */
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
 }
@@ -215,6 +222,7 @@ body {
     box-shadow: var(--shadow-soft);
     border: 1px solid hsla(330, 80%, 85%, 0.2);
     transition: var(--transition-smooth);
+
 }
 
 .outfit-card:hover, .seasonal-card:hover {
