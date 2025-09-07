@@ -215,7 +215,6 @@ body {
     box-shadow: var(--shadow-soft);
     border: 1px solid hsla(330, 80%, 85%, 0.2);
     transition: var(--transition-smooth);
-    group: card;
 }
 
 .outfit-card:hover, .seasonal-card:hover {
