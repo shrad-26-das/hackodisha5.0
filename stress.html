@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Moments - Mental Health & Stress Relief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>🌸 Stress Relief zone</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#breathing" class="nav-link">Breathing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#meditation" class="nav-link">Meditation</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#yoga" class="nav-link">Yoga</a>
+                </li>
+             
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero/Cover Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Find Your Inner Peace</h1>
+            <p class="hero-subtitle">Take a moment to breathe, relax, and reconnect with yourself</p>
+            <div class="hero-icons">
+                <span class="hero-icon">🧘‍♀️</span>
+                <span class="hero-icon">🌿</span>
+                <span class="hero-icon">✨</span>
+                <span class="hero-icon">🌸</span>
+            </div>
+            <button class="cta-button" onclick="scrollToSection('breathing')">Start Your Journey</button>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Breathing Exercises Section -->
+    <section id="breathing" class="section">
+        <div class="container">
+            <h2 class="section-title">🌬️ Breathing Exercises</h2>
+            <p class="section-subtitle">Follow the gentle rhythm to calm your mind</p>
+            
+            <div class="breathing-container">
+                <div class="breathing-circle" id="breathingCircle">
+                    <div class="breathing-text" id="breathingText">Click to Start</div>
+                </div>
+                <div class="breathing-controls">
+                    <button class="btn-primary" id="startBreathing">Start Breathing</button>
+                    <button class="btn-secondary" id="stopBreathing">Stop</button>
+                </div>
+                <div class="breathing-info">
+                    <p>✨ 4-7-8 Breathing Technique</p>
+                    <p>Inhale for 4 seconds, hold for 7, exhale for 8</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meditation Timer Section -->
+    <section id="meditation" class="section">
+        <div class="container">
+            <h2 class="section-title">🧘‍♀️ Meditation Timer</h2>
+            <p class="section-subtitle">Set your intention and find your center</p>
+            
+            <div class="meditation-container">
+                <div class="timer-display" id="timerDisplay">05:00</div>
+                <div class="timer-controls">
+                    <div class="time-buttons">
+                        <button class="time-btn" data-time="5">5 min</button>
+                        <button class="time-btn active" data-time="10">10 min</button>
+                        <button class="time-btn" data-time="15">15 min</button>
+                        <button class="time-btn" data-time="20">20 min</button>
+                    </div>
+                    <div class="meditation-controls">
+                        <button class="btn-primary" id="startMeditation">Start Meditation</button>
+                        <button class="btn-secondary" id="pauseMeditation">Pause</button>
+                        <button class="btn-secondary" id="resetMeditation">Reset</button>
+                    </div>
+                </div>
+                <div class="meditation-visual" id="meditationVisual">
+                    <div class="meditation-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yoga Poses Section -->
+    <section id="yoga" class="section">
+        <div class="container">
+            <h2 class="section-title">🌿 Simple Yoga Poses</h2>
+            <p class="section-subtitle">Gentle stretches to release tension</p>
+            
+            <div class="yoga-grid">
+                <div class="yoga-card">
+                    <div class="yoga-icon"></div>
+                    <h3>Child's Pose</h3>
+                    <p>Kneel and sit back on your heels. Stretch arms forward, lowering forehead to the ground. Hold for 30 seconds.</p>
+                </div>
+                
+                <div class="yoga-card">
+                    <div class="yoga-icon"></div>
+                    <h3>Cat-Cow Stretch</h3>
+                    <p>Start on hands and knees. Arch your back (cow), then round it (cat). Repeat 5-10 times slowly.</p>
+                </div>
+                
+                <div class="yoga-card">
+                    <div class="yoga-icon"></div>
+                    <h3>Mountain Pose</h3>
+                    <p>Stand tall with feet hip-width apart. Arms at sides, breathe deeply. Focus on grounding and balance.</p>
+                </div>
+                
+                <div class="yoga-card">
+                    <div class="yoga-icon"></div>
+                    <h3>Legs Up Wall</h3>
+                    <p>Lie on your back near a wall. Extend legs up the wall. Relax arms by your sides for 5-10 minutes.</p>
+                </div>
+                
+                <div class="yoga-card">
+                    <div class="yoga-icon"></div>
+                    <h3>Seated Twist</h3>
+                    <p>Sit cross-legged. Place right hand behind you, left hand on right knee. Gently twist. Repeat other side.</p>
+                </div>
+                
+                <div class="yoga-card">
+                    <div class="yoga-icon"></div>
+                    <h3>Forward Fold</h3>
+                    <p>Stand with feet hip-width apart. Slowly bend forward, letting arms hang loose. Hold for 30 seconds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mindful Moments. Take care of your mental health. 🌸</p>
+            <div class="footer-icons">
+                <span>🧘‍♀️</span>
+                <span>🌿</span>
+                <span>✨</span>
+                <span>💙</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
